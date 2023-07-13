@@ -1,10 +1,23 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @product %>
-
-<div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
-
-  <%= button_to "Destroy this product", @product, method: :delete %>
+<% content_for :back_path, root_path%>
+<% content_for :page_name, "EXPENSE TRANSACTION" %>
+<% content_for :nav_button do%>
+<%= button_to "Logout", destroy_user_session_path, method: :delete,class: "nav-link text-white" %>
+<%end%>
+<%= render "shared/category", category: @product%>
+<ul class="list-product">
+<li class="list-product-item"><h2>EXPENSE TRANSACTION</h2></li>
+<% @categories.each do |category|%>
+<li class="list-product-item">
+<div class="d-flex justify-content-between">
+<h2><%= category.name %></h2>
+<div class="proxima-bold">$<%= category.amount %></div>
 </div>
+<div><%=category.created_at.strftime("%d %b %Y at %l:%M %P")%></div>
+</li>
+<% end %>
+</ul>
+<div class="btn-container">
+<%= button_to "Add Expense Transaction", new_product_category_path(@product), method: :get, class: "btn btn-style btn-lg mt-2" %>
+</div>
+
+

@@ -1,17 +1,20 @@
-<%= form_with(model: product) do |form| %>
-  <% if product.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<% content_for :back_path, root_path%>
+<% content_for :page_name, "CREATE NEW CATEGORIES" %>
+<% content_for :nav_button do%>
+<%= button_to "Logout", destroy_user_session_path, method: :delete,class: "nav-link text-white" %>
+<%end%>
+<%= form_with model: @product do |form|%>
 
-      <ul>
-        <% product.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="icon-name">
+<%=form.label :icon, class: "form-label"%>
+<%=form.text_field :icon, class: "form-control", placeholder: "Add Icon", required: true, pattern: "^(http|https)://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(\/.*)?$"%>
+</div>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+<div class="icon-name">
+<%=form.label :name, class: "form-label"%>
+<%=form.text_field :name, class: "form-control", placeholder: "Category name", required: true%>
+</div>
+<div class="btn-container">
+<%=form.submit "Create", class: "btn btn-style btn-lg"%>
+</div>
+<%end%>
