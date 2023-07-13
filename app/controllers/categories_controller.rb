@@ -3,7 +3,8 @@ class CategoriesController < ApplicationController
 
   # GET /categories or /categories.json
   def index
-    @categories = Category.all
+    @product = current_user.products.find(params[:product_id])
+    @category = Category.new
   end
 
   # GET /categories/1 or /categories/1.json
@@ -21,6 +22,14 @@ class CategoriesController < ApplicationController
 
   # POST /categories or /categories.json
   def create
+      @product = current_user.products.find(params[:product_id])
+      @category = current_user.categories.new(category_params)
+      if @category.save
+        redirect_to product_path(@product), notice: 'Category was successfully created.'
+      else
+        render :new
+      end
+    end
     @category = Category.new(category_params)
 
     respond_to do |format|
@@ -65,6 +74,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.fetch(:category, {})
+      params.require(:category).permit(:name, :amount, group_ids: [])
     end
 end
