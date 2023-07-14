@@ -5,7 +5,7 @@ RSpec.describe 'Category/create', type: :system do
   describe 'category create page' do
     before do
       @user = User.create(name: 'Test', email: 'caren@example.com', password: 'password')
-      @product = Category.create(author: @user, name: 'test product1', icon: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg')
+      @product = Category.create(author: @user, name: 'test product1', icon: 'https://nilababyshop.com/wp-content/uploads/2022/08/IMG-20220810-WA0063.jpg')
 
       visit new_product_category_path(@product)
       fill_in 'Email', with: @user.email

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -18,7 +20,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'requires a unique email' do
-      existing_user = User.create(name: 'John', email: 'caren@example.com', password: 'password123')
+      User.create(name: 'John', email: 'caren@example.com', password: 'password123')
       new_user = User.new(name: 'Caren', email: 'caren@example.com', password: 'test123')
       expect(new_user).to_not be_valid
     end
@@ -34,9 +36,11 @@ RSpec.describe User, type: :model do
       user = User.new(name: 'Caren', email: 'caren@gmail.com', password: 'test123')
       expect(user.products).to be_empty
 
-      product = Product.create(name: 'Test Product', icon: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg', author: user)
+      product = Product.create(name: 'Test Product',
+                               icon: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-
+                               6817a8d2c45e/NationalGeographic_2572187_square.jpg',
+                               author: user)
       expect(user.products).to include(product)
     end
   end
 end
-
