@@ -119,3 +119,27 @@
     background-color: #3778c2;
     color: white;
   }
+  .list-product {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+  }
+  
+  .list-product-item {
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    border: 1px solid #ccc; 
+  }
+
+  .my-card:hover {
+    background-color: #f2f2f2;
+    transition: background-color 0.3s ease-in-out;
+  }.my-card.hover-effect {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .my-card.hover-effect:hover {
+    transform: scale(1.05);
+  }
