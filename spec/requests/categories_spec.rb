@@ -13,123 +13,27 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/categories", type: :request do
-  
-  # This should return the minimal set of attributes required to create a valid
-  # Category. As you add validations to Category, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  describe "GET /index" do
-    it "renders a successful response" do
-      Category.create! valid_attributes
-      get categories_url
-      expect(response).to be_successful
+  before :each do
+    @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
+    @product = Product.create(author: @user, name: 'test product', icon: 'https://www.ikea.com/images/grimsloev-series-in-off-white-54161e19bd8d6fb3df81e6c9b84efaae.jpg')
+    sign_in @user
+  end
+  describe 'GET /new' do
+    it 'returns http success' do
+      get new_product_category_path(@product)
+      expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
-      category = Category.create! valid_attributes
-      get category_url(category)
-      expect(response).to be_successful
-    end
-  end
+  describe 'POST :create' do
+    it 'creates a new category' do
+      category_attributes = { name: 'test product', amount: 20 }
 
-  describe "GET /new" do
-    it "renders a successful response" do
-      get new_category_url
-      expect(response).to be_successful
-    end
-  end
+      post product_categories_path(@product), params: { category: category_attributes }
 
-  describe "GET /edit" do
-    it "renders a successful response" do
-      category = Category.create! valid_attributes
-      get edit_category_url(category)
-      expect(response).to be_successful
-    end
-  end
-
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Category" do
-        expect {
-          post categories_url, params: { category: valid_attributes }
-        }.to change(Category, :count).by(1)
-      end
-
-      it "redirects to the created category" do
-        post categories_url, params: { category: valid_attributes }
-        expect(response).to redirect_to(category_url(Category.last))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "does not create a new Category" do
-        expect {
-          post categories_url, params: { category: invalid_attributes }
-        }.to change(Category, :count).by(0)
-      end
-
-    
-      it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post categories_url, params: { category: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    
-    end
-  end
-
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested category" do
-        category = Category.create! valid_attributes
-        patch category_url(category), params: { category: new_attributes }
-        category.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the category" do
-        category = Category.create! valid_attributes
-        patch category_url(category), params: { category: new_attributes }
-        category.reload
-        expect(response).to redirect_to(category_url(category))
-      end
-    end
-
-    context "with invalid parameters" do
-    
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        category = Category.create! valid_attributes
-        patch category_url(category), params: { category: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    
-    end
-  end
-
-  describe "DELETE /destroy" do
-    it "destroys the requested category" do
-      category = Category.create! valid_attributes
-      expect {
-        delete category_url(category)
-      }.to change(Category, :count).by(-1)
-    end
-
-    it "redirects to the categories list" do
-      category = Category.create! valid_attributes
-      delete category_url(category)
-      expect(response).to redirect_to(categories_url)
+      expect(response.status).to eq(302)
+      expect(Category.last.name).to eq('test category')
+      expect(Category.last.amount).to eq(20.0)
     end
   end
 end

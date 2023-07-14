@@ -13,63 +13,42 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/products", type: :request do
-  
-  # This should return the minimal set of attributes required to create a valid
-  # Product. As you add validations to Product, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    {
+      name: 'test product',
+      icon: 'https://www.ikea.com/images/grimsloev-series-in-off-white-54161e19bd8d6fb3df81e6c9b84efaae.jpg'
+    }
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  before(:each) do
+    @user = User.create(name: 'Caren', email: 'test2@example.com', password: 'password')
+    sign_in @user
+  end
 
-  describe "GET /index" do
-    it "renders a successful response" do
-      Product.create! valid_attributes
-      get products_url
-      expect(response).to be_successful
+  describe 'GET /index' do
+    it 'returns http success' do
+      get '/products'
+      expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
-      product = Product.create! valid_attributes
-      get product_url(product)
-      expect(response).to be_successful
+  describe 'GET /show' do
+    it 'returns http success' do
+      product = Product.create(author: @user, name: 'test product', icon: 'https://www.ikea.com/images/grimsloev-series-in-off-white-54161e19bd8d6fb3df81e6c9b84efaae.jpg')
+      get product_path(product)
+      expect(response).to have_http_status(:success)
     end
   end
 
+  describe 'POST /create' do
+    it 'creates a new product' do
+      expect {
+        post '/products', params: { product: valid_attributes }
+      }.to change(Product, :count).by(1)
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Product" do
-        expect {
-          post products_url, params: { product: valid_attributes }
-        }.to change(Product, :count).by(1)
-      end
-
-      it "redirects to the created product" do
-        post products_url, params: { product: valid_attributes }
-        expect(response).to redirect_to(product_url(Product.last))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "does not create a new Product" do
-        expect {
-          post products_url, params: { product: invalid_attributes }
-        }.to change(Product, :count).by(0)
-      end
-
-    
-      it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post products_url, params: { product: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    
+      expect(response).to redirect_to(products_path)
+      expect(Product.last.name).to eq('test product')
+      expect(Product.last.icon).to eq('https://www.ikea.com/images/grimsloev-series-in-off-white-54161e19bd8d6fb3df81e6c9b84efaae.jpg')
     end
   end
-
 end
