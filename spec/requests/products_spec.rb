@@ -14,7 +14,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/products', type: :request do
+RSpec.describe '/products', type: :request do # rubocop:todo Metrics/BlockLength
   let(:valid_attributes) do
     {
       name: 'test product',
@@ -36,7 +36,11 @@ RSpec.describe '/products', type: :request do
 
   describe 'GET /show' do
     it 'returns http success' do
-      product = Product.create(author: @user, name: 'test product', icon: 'https://www.ikea.com/images/grimsloev-series-in-off-white-54161e19bd8d6fb3df81e6c9b84efaae.jpg')
+      product = Product.create(
+        author: @user,
+        name: 'test product',
+        icon: 'https://www.ikea.com/images/grimsloev-series-in-off-white-54161e19bd8d6fb3df81e6c9b84efaae.jpg'
+      )
       get product_path(product)
       expect(response).to have_http_status(:success)
     end
@@ -44,9 +48,8 @@ RSpec.describe '/products', type: :request do
 
   describe 'POST /create' do
     it 'creates a new product' do
-      expect do
-        post '/products', params: { product: valid_attributes }
-      end.to change(Product, :count).by(1)
+      expect { post '/products', params: { product: valid_attributes } }
+        .to change(Product, :count).by(1)
 
       expect(Product.last.name).to eq('test product')
       expect(Product.last.icon).to eq('https://www.ikea.com/images/grimsloev-series-in-off-white-54161e19bd8d6fb3df81e6c9b84efaae.jpg')

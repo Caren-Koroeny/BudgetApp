@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProductsCategoriesController < ApplicationController
+class ProductsCategoriesController < ApplicationController # rubocop:todo Style/Documentation
   before_action :set_products_category, only: %i[show edit update destroy]
 
   # GET /products_categories or /products_categories.json
@@ -20,7 +20,7 @@ class ProductsCategoriesController < ApplicationController
   def edit; end
 
   # POST /products_categories or /products_categories.json
-  def create
+  def create # rubocop:todo Metrics/MethodLength
     @products_category = ProductsCategory.new(products_category_params)
 
     respond_to do |format|
@@ -29,11 +29,15 @@ class ProductsCategoriesController < ApplicationController
           redirect_to products_category_url(@products_category), notice: 'Products category was successfully created.'
         end
         format.json { render :show, status: :created, location: @products_category }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @products_category.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # PATCH/PUT /products_categories/1 or /products_categories/1.json
-  def update
+  def update # rubocop:todo Metrics/MethodLength
     respond_to do |format|
       if @products_category.update(products_category_params)
         format.html do

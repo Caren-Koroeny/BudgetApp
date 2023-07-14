@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Category, type: :model do
+RSpec.describe Category, type: :model do # rubocop:todo Metrics/BlockLength
   let(:user) { User.create(name: 'Caren', email: 'caren@gmail.com', password: 'test123') }
   let(:category) { Category.new(author: user, name: 'test Category', amount: 20) }
 
