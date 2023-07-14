@@ -29,15 +29,6 @@ class ProductsController < ApplicationController
     else
       render :new, alert: @product.errors.full_messages[0]
     end
-   
-    respond_to do |format|
-      if @product.save
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /products/1 or /products/1.json

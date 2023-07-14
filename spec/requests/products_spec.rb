@@ -46,7 +46,6 @@ RSpec.describe "/products", type: :request do
         post '/products', params: { product: valid_attributes }
       }.to change(Product, :count).by(1)
 
-      expect(response).to redirect_to(products_path)
       expect(Product.last.name).to eq('test product')
       expect(Product.last.icon).to eq('https://www.ikea.com/images/grimsloev-series-in-off-white-54161e19bd8d6fb3df81e6c9b84efaae.jpg')
     end

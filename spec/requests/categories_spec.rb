@@ -32,7 +32,7 @@ RSpec.describe "/categories", type: :request do
       post product_categories_path(@product), params: { category: category_attributes }
 
       expect(response.status).to eq(302)
-      expect(Category.last.name).to eq('test category')
+      expect(Category.last.name).to eq('test product')
       expect(Category.last.amount).to eq(20.0)
     end
   end

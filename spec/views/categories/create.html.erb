@@ -1,0 +1,27 @@
+
+require 'rails_helper'
+
+RSpec.describe 'Category/create', type: :system do
+  describe 'category create page' do
+    before do
+      @user = User.create(name: 'Test', email: 'caren@example.com', password: 'password')
+      @product = Category.create(author: @user, name: 'test product1', icon: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg')
+
+      visit new_product_category_path(@product)
+      fill_in 'Email', with: @user.email
+      fill_in 'Password', with: @user.password
+      click_button 'Log in'
+
+      fill_in 'Name', with: 'test category'
+      fill_in 'Amount', with: 20
+      select @product.name, from: 'category_product_ids'
+      click_button 'Create'
+    end
+    it 'categroy name' do
+      expect(page).to have_content('test category')
+    end
+    it 'categroy amount' do
+      expect(page).to have_content('$20.0')
+    end
+  end
+end
