@@ -35,8 +35,7 @@ RSpec.describe User, type: :model do
       expect(user.products).to be_empty
 
       product = Product.create(name: 'Test Product',
-                               icon: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-
-                               6817a8d2c45e/NationalGeographic_2572187_square.jpg',
+                               icon: 'https://www.ikea.com/images/grimsloev-series-in-off-white-54161e19bd8d6fb3df81e6c9b84efaae.jpg',
                                author: user)
       expect(user.products).to include(product)
     end
