@@ -40,7 +40,6 @@ Style/DefWithParentheses:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
-  SafeAutoCorrect: true
 
 Layout/HashAlignment:
   EnforcedColonStyle: key
