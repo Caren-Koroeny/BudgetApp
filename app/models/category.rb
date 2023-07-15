@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Category < ApplicationRecord # rubocop:todo Style/Documentation
   belongs_to :author, class_name: 'User'
   has_and_belongs_to_many :products
