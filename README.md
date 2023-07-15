@@ -83,7 +83,7 @@
 <!-- Video -->
 ## :movie_camera: Video documentation
 
-- [video](https://drive.google.com/file/d/1Xl_bFObhxPLj3BjzapBIxR29iJxXPWar/view?usp=sharing)
+[video](https://drive.google.com/file/d/1Xl_bFObhxPLj3BjzapBIxR29iJxXPWar/view?usp=sharing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
