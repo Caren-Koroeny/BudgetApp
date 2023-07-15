@@ -39,7 +39,7 @@ Style/AndOr:
 Style/DefWithParentheses:
   Enabled: false
 Style/FrozenStringLiteralComment:
-  Enabled: true
+  Enabled: false
   SafeAutoCorrect: true
 
 Layout/HashAlignment:
