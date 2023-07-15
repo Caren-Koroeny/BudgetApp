@@ -1,5 +1,7 @@
-class ProductsCategoriesController < ApplicationController 
-    before_action :set_products_category, only: %i[show edit update destroy]
+# frozen_string_literal: true
+
+class ProductsCategoriesController < ApplicationController
+  before_action :set_products_category, only: %i[show edit update destroy]
 
   # GET /products_categories or /products_categories.json
   def index

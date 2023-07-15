@@ -24,9 +24,6 @@ Metrics/AbcSize:
   Max: 50
 Metrics/ClassLength:
   Max: 150
-Metrics/BlockLength:
-  AllowedMethods: ['describe']
-  Max: 50
 
 Style/Documentation:
   Enabled: false
@@ -38,8 +35,6 @@ Style/AndOr:
   Enabled: false
 Style/DefWithParentheses:
   Enabled: false
-Style/FrozenStringLiteralComment:
-  EnforcedStyle: never
 
 Layout/HashAlignment:
   EnforcedColonStyle: key
