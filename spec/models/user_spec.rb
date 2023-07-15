@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do # rubocop:todo Metrics/BlockLength
+RSpec.describe User, type: :model do
   describe 'validations' do
     it 'requires a name' do
       user = User.new(email: 'caren@gmail.com', password: 'test123')

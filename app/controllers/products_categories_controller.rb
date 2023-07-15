@@ -19,7 +19,7 @@ class ProductsCategoriesController < ApplicationController
   def edit; end
 
   # POST /products_categories or /products_categories.json
-  def create # rubocop:todo Metrics/MethodLength
+  def create
     @products_category = ProductsCategory.new(products_category_params)
 
     respond_to do |format|
@@ -36,7 +36,7 @@ class ProductsCategoriesController < ApplicationController
   end
 
   # PATCH/PUT /products_categories/1 or /products_categories/1.json
-  def update # rubocop:todo Metrics/MethodLength
+  def update
     respond_to do |format|
       if @products_category.update(products_category_params)
         format.html do
