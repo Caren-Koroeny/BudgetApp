@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/controllers/application_controller.rb
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show edit update destroy]

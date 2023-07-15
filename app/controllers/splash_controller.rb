@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/controllers/splash_controller.rb
 class SplashController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index]
