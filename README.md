@@ -75,17 +75,16 @@
 
 <!-- Screen Shots -->
 
-<!-- Video -->
-
-## :movie_camera: Video documentation
-
-[video](https://siya.onrender.com/)
-
 <!-- LIVE DEMO -->
-
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://drive.google.com/file/d/1Xl_bFObhxPLj3BjzapBIxR29iJxXPWar/view?usp=sharing)
+
+[Live Demo Link](https://siya.onrender.com/)
+
+<!-- Video -->
+## :movie_camera: Video documentation
+
+- [video](https://drive.google.com/file/d/1Xl_bFObhxPLj3BjzapBIxR29iJxXPWar/view?usp=sharing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
