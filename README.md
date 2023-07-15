@@ -79,7 +79,7 @@
 
 ## :movie_camera: Video documentation
 
-[video](https://siya.onrender.com)
+[video](https://siya.onrender.com/)
 
 <!-- LIVE DEMO -->
 
