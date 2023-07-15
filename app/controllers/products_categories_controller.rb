@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Documentation for the ProductsCategoriesController class.
 class ProductsCategoriesController < ApplicationController
   before_action :set_products_category, only: %i[show edit update destroy]
 
