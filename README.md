@@ -144,6 +144,13 @@ command:
   rspec
 ```
 
+Please update the `database.yml` file with your local database credentials:
+```sh
+  database.yml
+```
+
+Then open `config/database.yml` and replace `your_database_name`, `your_username`, and `your_password` with your own database details.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
